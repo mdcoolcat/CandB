@@ -23,7 +23,7 @@ class Node(object):
 class Linked_list(object):
     def __init__(self):
         self.__head = None 
-        self.tail = None
+        self.__tail = None
         self.__len = 0
 
     def size(self):
@@ -159,12 +159,13 @@ def main():
     n = Node(6)
     n2 = Node(-1)
     n3 = Node(0)
-    l.append(Node(2))
-    l.prepend(n)
-    l.prepend(Node(5))
-    l.append(n2)
+    l.insert(Node(2))
+    l.insert(n)
+    l.insert(Node(5))
+    l.insert(n2)
+    l.prepend(Node(6))
     print l, l.get_first(), l.get_last()
-    print l.index_of(n2), l.index_of(n3)
+    print l.index_of(n), l.index_of(n3)
     print l.remove(n)
     print l, l.get_first(), l.get_last()
     print l.remove_last()
