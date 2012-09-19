@@ -2,6 +2,7 @@ import sys
 import os
 import commands
 import re
+from test_helper import test
 
 # merge two arrays
 def merge(a, b):
@@ -35,17 +36,6 @@ def merge_sort(arr):
     left = merge_sort(arr[: mid])
     right = merge_sort(arr[mid : ])
     return merge(left, right)
-  
-# Simple provided test() function used in main() to print
-# what each function returns vs. what it's supposed to return.
-def test(got, expected):
-      if got == expected:
-          prefix = ' OK '
-      else:
-          prefix = '  X '
-
-      print '%s got: %s expected: %s' % (prefix, repr(got), repr(expected))
-
 
 def main():
     cases = [

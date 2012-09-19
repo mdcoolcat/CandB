@@ -6,6 +6,7 @@ import os
 import commands
 import re
 from sets import Set
+from test_helper import test
 
 # binary add function, my facebook interview...
 # return a string in binary format
@@ -79,25 +80,26 @@ def reverse_polish(s):
         print e
         raise
 
-
-# Simple provided test() function used in main() to print
-# what each function returns vs. what it's supposed to return.
-def test(got, expected):
-      if got == expected:
-          print 'OK got: %s' % repr(got)
-      else:
-          prefix = '  X '
-          print '%s got: %s expected: %s' % (prefix, repr(got), repr(expected))
+# O(n^2) substring...
+def is_substring(s, sub):
+    if len(s) < len(sub):
+        return False
+    if s == sub or (len(sub) == 0):
+        return True
+    for i in range(0, len(s)):
+        sub_found = True
+        for j in range(0, len(sub)):
+            if i + j >= len(s):
+                return False
+            if s[i + j] != sub[j]:
+                sub_found = False
+                break
+        if sub_found:
+            return True
+    return False
 
 
 def main():
-    cases = [
-            'abccdwsef',
-            'h hh',
-            'I love rongchao, hope rongchao love me too @_@'
-            ]
-    #for c in cases:
-
     print '**** test binary add by string ****'
     test(bi_add('11111','1'), '100000')
     test(bi_add('1010','1010'), '10100')
@@ -108,6 +110,12 @@ def main():
     reverse_polish('2 s  + 4 0 /')
     reverse_polish('21 + s 0 /')
     reverse_polish('2 1 + 0 /')
+
+    s = 'the same one'
+    tests = ['', 'the same one', ' same', 'he', ' one', 'dif one', 'thesame', ' one ']
+    print '**** test is_substring ****'
+    for sub in tests:
+        test(is_substring(s, sub), str.find(s, sub) > -1)
 
 if __name__ == '__main__':
     main()
